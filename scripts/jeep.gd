@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 
     steer = move_toward(steer, turn, delta * 3.0)
     if abs(speed) > 0.4:
-        var steering_factor := clamp(abs(speed) / 8.0, 0.25, 1.0)
+        var steering_factor: float = clampf(abs(speed) / 8.0, 0.25, 1.0)
         rotate_y(-steer * steering_rate * delta * steering_factor * sign(speed))
 
     var forward := -global_transform.basis.z
