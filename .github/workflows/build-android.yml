@@ -57,14 +57,19 @@ jobs:
           chmod +x android/build/gradlew
           touch android/build/.gdignore
           echo "4.3.stable" > android/.build_version
+          echo "=== Android template contents ==="
+          find android/build -maxdepth 2 -type f | head -60
+          echo "=== Installed export templates ==="
+          find "$HOME/.local/share/godot/export_templates/4.3.stable" -maxdepth 1 -type f -printf '%f\n'
 
       - name: Reimport project with Android template
-        run: godot --headless --editor --path . --quit
+        run: godot --headless --editor --path . --quit --verbose
 
       - name: Export APK
         run: |
+          set -o pipefail
           mkdir -p build
-          godot --headless --verbose --path . --export-debug "Android" build/IndianOffroadJeep-debug.apk
+          godot --headless --verbose --path . --export-debug "Android" build/IndianOffroadJeep-debug.apk 2>&1 | tee build/export.log
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
