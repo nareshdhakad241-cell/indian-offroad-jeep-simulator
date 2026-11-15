@@ -244,7 +244,7 @@ func _make_ui() -> void:
 
     var backdrop := ColorRect.new()
     backdrop.set_anchors_preset(Control.PRESET_FULL_RECT)
-    backdrop.color = Color(0.035, 0.055, 0.045, 0.97)
+    backdrop.color = Color(0.035, 0.055, 0.045, 0.28)
     splash.add_child(backdrop)
 
     var emblem := Label.new()
@@ -278,7 +278,7 @@ func _make_ui() -> void:
     splash_subtitle.add_theme_color_override("font_color", Color(0.66, 0.70, 0.60))
     splash.add_child(splash_subtitle)
 
-    get_tree().create_timer(2.0).timeout.connect(splash.queue_free)
+    get_tree().create_timer(4.0).timeout.connect(splash.queue_free)
 
     # Physical-style touch steering wheel; drag around the rim to steer.
     var steering_wheel := Control.new()
