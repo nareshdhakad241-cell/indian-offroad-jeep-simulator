@@ -47,8 +47,16 @@ jobs:
       - name: Import project
         run: godot --headless --editor --path . --quit
 
-      - name: Install Android build template
-        run: godot --headless --editor --path . --install-android-build-template --quit
+      - name: Install Android build template directly
+        run: |
+          set -euxo pipefail
+          TEMPLATE="$(find "$HOME/.local/share/godot/export_templates" -name android_source.zip -print -quit)"
+          test -n "$TEMPLATE"
+          mkdir -p android/build
+          unzip -q "$TEMPLATE" -d android/build
+          chmod +x android/build/gradlew
+          touch android/build/.gdignore
+          echo "4.3.stable" > android/.build_version
 
       - name: Export APK
         run: |
