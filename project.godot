@@ -1,0 +1,34 @@
+config_version=5
+
+[application]
+config/name="Indian Offroad Jeep Simulator"
+run/main_scene="res://scenes/Main.tscn"
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/handheld/orientation=1
+window/stretch/mode="canvas_items"
+
+[input]
+ui_up={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"physical_keycode":87), Object(InputEventKey,"keycode":4194320)]
+}
+ui_down={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"physical_keycode":83), Object(InputEventKey,"keycode":4194322)]
+}
+ui_left={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"physical_keycode":65), Object(InputEventKey,"keycode":4194311)]
+}
+ui_right={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"physical_keycode":68), Object(InputEventKey,"keycode":4194313)]
+}
+
+[rendering]
+renderer/rendering_method="mobile"
+renderer/rendering_method.mobile="mobile"
+environment/defaults/default_clear_color=Color(0.52, 0.72, 0.88, 1)
