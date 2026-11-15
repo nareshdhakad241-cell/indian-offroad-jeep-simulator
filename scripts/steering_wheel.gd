@@ -27,7 +27,7 @@ func _gui_input(event: InputEvent) -> void:
             touch_active = false
             accept_event()
     elif event is InputEventScreenDrag and touch_active:
-        var current_angle := (event.position - center).angle()
+        var current_angle: float = (event.position - center).angle()
         var delta_angle := wrapf(current_angle - touch_start_angle, -PI, PI)
         steering_value = clampf(delta_angle / 1.05, -1.0, 1.0)
         accept_event()
