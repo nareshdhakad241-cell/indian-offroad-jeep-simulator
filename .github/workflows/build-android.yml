@@ -55,7 +55,22 @@ jobs:
           EOF
 
       - name: Import and validate project
-        run: godot --headless --editor --path . --quit
+        run: |
+          set -o pipefail
+          godot --headless --editor --path . --quit 2>&1 | tee build/import.log
+          if grep -E "SCRIPT ERROR|Parse Error|Failed to load script" build/import.log; then
+            echo "Godot script validation failed"
+            exit 1
+          fi
+
+      - name: Run headless scene smoke test
+        run: |
+          set -o pipefail
+          godot --headless --path . --quit-after 3 2>&1 | tee build/runtime.log
+          if grep -E "SCRIPT ERROR|Parse Error|Failed to load script" build/runtime.log; then
+            echo "Godot runtime smoke test failed"
+            exit 1
+          fi
 
       - name: Export APK using official templates
         run: |
