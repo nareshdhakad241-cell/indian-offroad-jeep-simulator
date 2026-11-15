@@ -33,6 +33,17 @@ jobs:
           use-dotnet: false
           include-templates: true
 
+      - name: Create temporary Android debug keystore
+        run: |
+          mkdir -p build
+          keytool -genkeypair -v \
+            -keystore build/debug.keystore \
+            -storepass android \
+            -alias androiddebugkey \
+            -keypass android \
+            -dname "CN=Android Debug,O=Android,C=US" \
+            -keyalg RSA -keysize 2048 -validity 10000
+
       - name: Configure Godot Android SDK
         run: |
           mkdir -p ~/.config/godot
@@ -49,7 +60,6 @@ jobs:
       - name: Export APK using official templates
         run: |
           set -o pipefail
-          mkdir -p build
           godot --headless --verbose --path . --export-debug "Android" build/IndianOffroadJeep-debug.apk 2>&1 | tee build/export.log
           test -s build/IndianOffroadJeep-debug.apk
 
