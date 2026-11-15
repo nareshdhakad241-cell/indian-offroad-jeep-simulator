@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
     queue_redraw()
 
 func _gui_input(event: InputEvent) -> void:
-    var center := size * 0.5
+    var center: Vector2 = size * 0.5
     if event is InputEventScreenTouch:
         if event.pressed:
             touch_active = true
@@ -27,8 +27,8 @@ func _gui_input(event: InputEvent) -> void:
             touch_active = false
             accept_event()
     elif event is InputEventScreenDrag and touch_active:
-        var current_angle: float = (event.position - center).angle()
-        var delta_angle := wrapf(current_angle - touch_start_angle, -PI, PI)
+        var current_angle: float = atan2(event.position.y - center.y, event.position.x - center.x)
+        var delta_angle: float = wrapf(current_angle - touch_start_angle, -PI, PI)
         steering_value = clampf(delta_angle / 1.05, -1.0, 1.0)
         accept_event()
     elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -49,8 +49,8 @@ func _draw() -> void:
     draw_arc(center, radius, 0.0, TAU, 72, Color(0.12, 0.14, 0.12), 18.0, true)
     draw_arc(center, radius, 0.0, TAU, 72, Color(0.72, 0.68, 0.49), 3.0, true)
     for i in range(3):
-        var angle := wheel_rotation + float(i) * TAU / 3.0 - PI / 2.0
-        var end_point := center + Vector2(cos(angle), sin(angle)) * radius * 0.78
+        var angle: float = wheel_rotation + float(i) * TAU / 3.0 - PI / 2.0
+        var end_point: Vector2 = center + Vector2(cos(angle), sin(angle)) * radius * 0.78
         draw_line(center, end_point, Color(0.20, 0.22, 0.19), 12.0, true)
         draw_line(center, end_point, Color(0.72, 0.68, 0.49), 2.0, true)
     draw_circle(center, radius * 0.19, Color(0.12, 0.14, 0.12))
