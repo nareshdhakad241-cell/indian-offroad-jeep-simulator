@@ -272,10 +272,17 @@ func _make_ui() -> void:
 
     get_tree().create_timer(2.0).timeout.connect(splash.queue_free)
 
-    # Four independent touch buttons: Android multi-touch lets steering,
-    # accelerator and brake be held with separate fingers.
-    _add_touch_button(layer, "◀", "ui_left", Vector4(24, -126, 112, -28), Control.PRESET_BOTTOM_LEFT)
-    _add_touch_button(layer, "▶", "ui_right", Vector4(132, -126, 220, -28), Control.PRESET_BOTTOM_LEFT)
+    # Physical-style touch steering wheel; drag around the rim to steer.
+    var steering_wheel := Control.new()
+    steering_wheel.name = "SteeringWheel"
+    steering_wheel.set_script(preload("res://scripts/steering_wheel.gd"))
+    steering_wheel.set_anchors_preset(Control.PRESET_BOTTOM_LEFT)
+    steering_wheel.offset_left = 24
+    steering_wheel.offset_top = -218
+    steering_wheel.offset_right = 214
+    steering_wheel.offset_bottom = -28
+    layer.add_child(steering_wheel)
+
     _add_touch_button(layer, "BRAKE", "brake", Vector4(-226, -122, -118, -28), Control.PRESET_BOTTOM_RIGHT)
     _add_touch_button(layer, "RACE", "ui_up", Vector4(-112, -142, -20, -20), Control.PRESET_BOTTOM_RIGHT)
 
