@@ -235,7 +235,7 @@ func _make_ui() -> void:
     layer.add_child(splash)
 
     var hero_image := TextureRect.new()
-    hero_image.texture = load("res://assets/thar_icon.jpg")
+    hero_image.texture = load("res://assets/thar_icon.png")
     hero_image.set_anchors_preset(Control.PRESET_FULL_RECT)
     hero_image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
     hero_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
