@@ -9,7 +9,7 @@ extends CharacterBody3D
 
 var speed: float = 0.0
 var steer: float = 0.0
-var steering_wheel: Control
+var steering_wheel: Node
 
 func _ready() -> void:
     steering_wheel = get_tree().get_first_node_in_group("steering_wheel") as Control
@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
     var brake := Input.get_action_strength("brake")
     var turn := Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
     if is_instance_valid(steering_wheel):
-        turn = steering_wheel.steering_value
+        turn = float(steering_wheel.get("steering_value"))
 
     if brake > 0.0:
         speed = move_toward(speed, 0.0, brake_power * brake * delta)
