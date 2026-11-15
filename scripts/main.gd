@@ -135,7 +135,7 @@ func _make_ui() -> void:
     layer.add_child(label)
     _add_touch_button(layer, "◀", "ui_left", Vector2(35, 560))
     _add_touch_button(layer, "▶", "ui_right", Vector2(145, 560))
-    _add_touch_button(layer, "BRAKE", "ui_down", Vector2(850, 560), Vector2(140, 90))
+    _add_touch_button(layer, "BRAKE", "brake", Vector2(850, 560), Vector2(140, 90))
     _add_touch_button(layer, "GO", "ui_up", Vector2(1010, 560), Vector2(180, 110))
 
 func _add_touch_button(parent: CanvasLayer, caption: String, action: String, pos: Vector2, button_size: Vector2 = Vector2(95, 90)) -> void:
