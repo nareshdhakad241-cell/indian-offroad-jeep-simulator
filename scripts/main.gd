@@ -213,7 +213,7 @@ func _make_lighting() -> void:
     environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
     environment.ambient_light_color = Color(0.55, 0.60, 0.65)
     environment.tonemap_mode = Environment.TONE_MAPPER_FILMIC
-    environment. ssao_enabled = true
+    environment.ssao_enabled = true
     env.environment = environment
     add_child(env)
 
@@ -227,6 +227,50 @@ func _make_ui() -> void:
     title.add_theme_font_size_override("font_size", 22)
     title.add_theme_color_override("font_color", Color(1.0, 0.94, 0.78))
     layer.add_child(title)
+
+    var splash := Control.new()
+    splash.name = "StartupSplash"
+    splash.set_anchors_preset(Control.PRESET_FULL_RECT)
+    splash.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    layer.add_child(splash)
+
+    var backdrop := ColorRect.new()
+    backdrop.set_anchors_preset(Control.PRESET_FULL_RECT)
+    backdrop.color = Color(0.035, 0.055, 0.045, 0.97)
+    splash.add_child(backdrop)
+
+    var emblem := Label.new()
+    emblem.text = "4×4"
+    emblem.set_anchors_preset(Control.PRESET_CENTER)
+    emblem.position = Vector2(-100, -110)
+    emblem.size = Vector2(200, 100)
+    emblem.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    emblem.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+    emblem.add_theme_font_size_override("font_size", 64)
+    emblem.add_theme_color_override("font_color", Color(0.82, 0.76, 0.48))
+    splash.add_child(emblem)
+
+    var splash_title := Label.new()
+    splash_title.text = "INDIAN OFFROAD JEEP SIMULATOR"
+    splash_title.set_anchors_preset(Control.PRESET_CENTER)
+    splash_title.position = Vector2(-360, 5)
+    splash_title.size = Vector2(720, 56)
+    splash_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    splash_title.add_theme_font_size_override("font_size", 28)
+    splash_title.add_theme_color_override("font_color", Color(0.96, 0.94, 0.86))
+    splash.add_child(splash_title)
+
+    var splash_subtitle := Label.new()
+    splash_subtitle.text = "EXPLORE • CLIMB • CONQUER"
+    splash_subtitle.set_anchors_preset(Control.PRESET_CENTER)
+    splash_subtitle.position = Vector2(-260, 60)
+    splash_subtitle.size = Vector2(520, 34)
+    splash_subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    splash_subtitle.add_theme_font_size_override("font_size", 16)
+    splash_subtitle.add_theme_color_override("font_color", Color(0.66, 0.70, 0.60))
+    splash.add_child(splash_subtitle)
+
+    get_tree().create_timer(2.0).timeout.connect(splash.queue_free)
 
     # Four independent touch buttons: Android multi-touch lets steering,
     # accelerator and brake be held with separate fingers.
