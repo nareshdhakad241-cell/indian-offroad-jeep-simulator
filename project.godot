@@ -27,6 +27,10 @@ ui_right={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"physical_keycode":68), Object(InputEventKey,"keycode":4194313)]
 }
+brake={
+"deadzone": 0.5,
+"events": []
+}
 
 [rendering]
 renderer/rendering_method="mobile"
