@@ -234,6 +234,14 @@ func _make_ui() -> void:
     splash.mouse_filter = Control.MOUSE_FILTER_IGNORE
     layer.add_child(splash)
 
+    var hero_image := TextureRect.new()
+    hero_image.texture = load("res://assets/thar_icon.jpg")
+    hero_image.set_anchors_preset(Control.PRESET_FULL_RECT)
+    hero_image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+    hero_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+    hero_image.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    splash.add_child(hero_image)
+
     var backdrop := ColorRect.new()
     backdrop.set_anchors_preset(Control.PRESET_FULL_RECT)
     backdrop.color = Color(0.035, 0.055, 0.045, 0.97)
