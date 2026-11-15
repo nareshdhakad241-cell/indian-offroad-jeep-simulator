@@ -274,10 +274,10 @@ func _make_ui() -> void:
 
     # Four independent touch buttons: Android multi-touch lets steering,
     # accelerator and brake be held with separate fingers.
-    _add_touch_button(layer, "◀", "ui_left", Vector2(24, -126, 112, -28), Control.PRESET_BOTTOM_LEFT)
-    _add_touch_button(layer, "▶", "ui_right", Vector2(132, -126, 220, -28), Control.PRESET_BOTTOM_LEFT)
-    _add_touch_button(layer, "BRAKE", "brake", Vector2(-226, -122, -118, -28), Control.PRESET_BOTTOM_RIGHT)
-    _add_touch_button(layer, "RACE", "ui_up", Vector2(-112, -142, -20, -20), Control.PRESET_BOTTOM_RIGHT)
+    _add_touch_button(layer, "◀", "ui_left", Vector4(24, -126, 112, -28), Control.PRESET_BOTTOM_LEFT)
+    _add_touch_button(layer, "▶", "ui_right", Vector4(132, -126, 220, -28), Control.PRESET_BOTTOM_LEFT)
+    _add_touch_button(layer, "BRAKE", "brake", Vector4(-226, -122, -118, -28), Control.PRESET_BOTTOM_RIGHT)
+    _add_touch_button(layer, "RACE", "ui_up", Vector4(-112, -142, -20, -20), Control.PRESET_BOTTOM_RIGHT)
 
 func _add_touch_button(parent: CanvasLayer, caption: String, action: String, offsets: Vector4, preset: Control.LayoutPreset) -> void:
     var button := Button.new()
